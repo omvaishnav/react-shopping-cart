@@ -11,8 +11,8 @@ class App extends React.Component {
       <React.Fragment>
         <div className="app">
           <Header />
-          <Route exact path="/" component={ProductListing} />
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/react-shopping-cart" component={ProductListing} />
+          <Route exact path="/react-shopping-cart/cart" component={Cart} />
           <div className="push"></div>
         </div>
         <Footer />

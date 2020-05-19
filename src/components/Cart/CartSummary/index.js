@@ -11,19 +11,19 @@ function CartSummary(props) {
     }
     
     return (
-        <div class="product-item cart-summary">
-            <div class="title">Price Details</div>
-            <div class="summary-content">
-                <div class="item price-item">
+        <div className="product-item cart-summary">
+            <div className="title">Price Details</div>
+            <div className="summary-content">
+                <div className="item price-item">
                     <div className="label">Price ({item} item)</div>
                     <div className="value text-right">{formatPrice(mrp)}</div>
                 </div>
-                <div class="item discount-item">
+                <div className="item discount-item">
                     <div className="label">Discount</div>
                     <div className="value text-right">{formatPrice(mrp - srp)}</div>
                 </div>
             </div>
-            <div class="item total-payable">
+            <div className="item total-payable">
                 <div className="label">Total Payable</div>
                 <div className="value text-right">{formatPrice(srp)}</div>
             </div>

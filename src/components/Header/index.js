@@ -8,7 +8,7 @@ import './header.scss';
 function Header() {
     return (
         <header className="app-header">
-            <Link to="/"><img src={logo} className="logo" alt="logo" /></Link>
+            <Link to="/react-shopping-cart"><img src={logo} className="logo" alt="logo" /></Link>
             <div className="pull-right">
                 <Search />
                 <CartIcon />
