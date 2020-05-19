@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables.scss';
+
+.search {
+    .search-item {
+        background: none;
+        border: none;
+        color: $white;
+        display: inline-block;
+        width: 0;
+        overflow: hidden;
+        transition: width 0.25s ease-in-out;
+        
+        &::placeholder {
+            color: $white;
+        }
+    }
+    &.open {
+        border-bottom: 1px solid $white;
+        .search-item {
+            width: auto;
+            transition: width 0.25s ease-in-out;
+        }
+    }
+}

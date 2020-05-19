@@ -1,0 +1,33 @@
+@import '../../../assets/scss/variables.scss';
+
+@media only screen and (min-width: 768px) {
+    .sort {
+        text-align: left;
+        padding: 20px 10px 10px;
+
+        .title {
+            font-size: 14px;
+            margin-right: 20px;
+        }
+    }
+    .sort-options {
+        display: inline-block;
+
+        .option {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: bold;
+            color: $light-gray;
+
+            .selected {
+                color: $blue;
+                text-decoration: underline;
+            }
+        }
+    }
+    .icon {
+        font-size: 14px;
+        cursor: default;
+    }
+}

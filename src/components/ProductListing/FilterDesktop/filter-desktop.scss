@@ -1,0 +1,25 @@
+@import '../../../assets/scss/variables.scss';
+
+
+@media only screen and (min-width: 768px) {
+    .filter {
+        border: none;
+
+        .title {
+            font-size: 14px;
+        }
+    }
+    /* Range Slider */
+    .input-range {
+        width: 70% !important;
+        margin: 20px auto 10px;
+        
+        .input-range__label--min, .input-range__label--max {
+            display: none;
+        }
+        .input-range__slider {
+            background: $white;
+            
+        }
+    }
+}
