@@ -1,0 +1,73 @@
+@import '../../assets/scss/variables.scss';
+
+.cart {
+    padding: 10px;
+
+    .product-item {
+        background: $white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 10px;
+        
+        img {
+            margin-right: 20px;
+        }
+        .item-content {
+            .name, .price, .counter, .action {
+                margin-bottom: 10px;
+            }
+            .price {
+                font-weight: bold;
+            }
+            .count {
+                border: 1px solid $light-gray;
+                display: inline-block;
+                width: 30px;
+                height: 20px;
+                text-align: center;
+                line-height: 20px;
+            }
+            .decrease, .increase {
+                border: 1px solid $light-gray;
+                border-radius: 50%;
+                cursor: pointer;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                margin: 0 5px;
+
+                .icon {
+                    position: relative;
+                    top: 3px;
+                }
+            }
+        }
+        .action {
+            text-align: left;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            .remove-item {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cart {
+        .cart-items {
+            box-sizing: border-box;
+            float: left;
+            padding-right: 20px;
+            width: 70%;
+        }
+        .cart-summary {
+            float: right;
+            width: 30%;
+        }
+    }
+}

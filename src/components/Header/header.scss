@@ -1,0 +1,24 @@
+@import '../../assets/scss/variables.scss';
+
+.app-header {
+    background: $blue;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box;
+    z-index: 11;
+
+    .icon {
+        color: $white;
+        cursor: pointer;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+    }
+    .search, .cart-icon {
+        display: inline-block;
+    }
+}
