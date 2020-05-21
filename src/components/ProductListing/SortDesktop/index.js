@@ -1,5 +1,5 @@
 import React from 'react';
-import './sort-desktop.scss';
+import styles from './sort-desktop.module.scss';
 
 class SortDesktop extends React.Component {
     constructor () {
@@ -39,9 +39,9 @@ class SortDesktop extends React.Component {
     render() {
         const SortOptions = () => {
             return (
-                <div className="sort-options">
+                <div className={styles["sort-options"]}>
                     {this.options.map(option => 
-                        <div className="option" key={option.key}>
+                        <div className={styles.option} key={option.key}>
                             <span 
                                 onClick={this.handleOptionClick.bind(this, option.value)} 
                                 className={`${(this.state.selectedOption === option.value ) ? 'selected' : ''}`}>{option.displayName}</span>
@@ -51,8 +51,8 @@ class SortDesktop extends React.Component {
             )
         }
         return (
-            <div className="sort">
-                <strong className="title" onClick={this.handleOpenModal}>Sort By</strong>
+            <div className={styles.sort}>
+                <strong className={styles.title} onClick={this.handleOpenModal}>Sort By</strong>
                 <SortOptions />
             </div>
         )

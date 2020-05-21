@@ -1,6 +1,7 @@
 @import '../../../assets/scss/variables.scss';
 
 .search {
+    display: inline-block;
     .search-item {
         background: none;
         border: none;
@@ -14,8 +15,9 @@
             color: $white;
         }
     }
-    &.open {
+    &:global(.open) {
         border-bottom: 1px solid $white;
+        
         .search-item {
             width: auto;
             transition: width 0.25s ease-in-out;

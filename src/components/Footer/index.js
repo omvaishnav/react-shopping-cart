@@ -1,9 +1,9 @@
 import React from 'react';
-import './footer.scss';
+import styles from './footer.module.scss';
 
 function Footer() {
     return (
-        <div className="footer">&copy;copyright</div>
+        <div className={styles.footer}>&copy;copyright</div>
     )
 }
 export default Footer;

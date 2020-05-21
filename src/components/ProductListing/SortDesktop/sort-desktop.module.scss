@@ -20,7 +20,7 @@
             font-weight: bold;
             color: $light-gray;
 
-            .selected {
+            :global(.selected) {
                 color: $blue;
                 text-decoration: underline;
             }

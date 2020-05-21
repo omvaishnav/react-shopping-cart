@@ -5,7 +5,7 @@ import { addToCart, updateCartCount, removeFromCart } from '../../Redux/Actions/
 import { formatPrice } from '../Product/productHelper';
 import CartSummary from './CartSummary';
 
-import './cart.scss';
+import styles from './cart.module.scss';
 
 class Cart extends React.Component {
     handleIncrease = (product) => {
@@ -13,41 +13,47 @@ class Cart extends React.Component {
         this.props.updateCartCount(this.props.cartCount + 1)
     }
     handleDecrease = (product) => {
-        if(product.qty > 1) {
-            this.props.removeFromCart(product)
-            this.props.updateCartCount(this.props.cartCount - 1)
+        let option = {
+            product: product,
+            removalType: "decrease"
         }
+        this.props.removeFromCart(option)
+        this.props.updateCartCount(this.props.cartCount - 1)
     }
     removeCartItem = (product) => {
-        this.props.removeFromCart(product)
-        this.props.updateCartCount(this.props.cartCount - 1)
+        let option = {
+            product: product,
+            removalType: "remove"
+        }
+        this.props.removeFromCart(option)
+        this.props.updateCartCount(this.props.cartCount - product.qty)
     }
 
     render(){
         return (
-            <div className="cart">
+            <div className={styles.cart}>
                 {this.props.cart.length > 0 ? (
-                    <div className="cart-items">
+                    <div className={styles["cart-items"]}>
                     {
                         this.props.cart.map((item,i) => {
                             return (
-                                <div className="product-item" key={i}>
+                                <div className={styles["product-item"]} key={i}>
                                     <img className="pull-left" src="https://rukminim1.flixcart.com/image/670/600/allinone-desktop/d/n/q/apple-imac-21-5-inch-4k-retina-core-i5-3-1ghz-8gb-1tb-intel-iris-original-imaeh5h83fuzbksz.jpeg?q=90" alt="" width="30%" />
-                                    <div className="item-content">
-                                        <div className="name">{item.name}</div>
-                                        <div className="price">
-                                            <span className="srp">{formatPrice(item.price.actual)} </span>
+                                    <div className={styles["item-content"]}>
+                                        <div className={styles.name}>{item.name}</div>
+                                        <div className={styles.price}>
+                                            <span className={styles.srp}>{formatPrice(item.price.actual)} </span>
                                             {item.price.actual <item.price.display && (
-                                                <span className="mrp">{formatPrice(item.price.display)}</span>
+                                                <span className={styles.mrp}>{formatPrice(item.price.display)}</span>
                                             )}
-                                            <span className="discount no-wrap"> {formatPrice(item.discount)}% off</span>
+                                            <span className={`${styles.discount} no-wrap`}> {formatPrice(item.discount)}% off</span>
                                         </div>
-                                        <div className="counter">
-                                            <span className="decrease" onClick={() => this.handleDecrease(item)}><span className="icon icon-minus"></span></span>
-                                            <span className="count">{item.qty}</span>
-                                            <span className="increase" onClick={() => this.handleIncrease(item)}><span className="icon icon-plus"></span></span>
+                                        <div className={styles.counter}>
+                                            <span className={styles.decrease} onClick={() => this.handleDecrease(item)}><span className="icon icon-minus"></span></span>
+                                            <span className={styles.count}>{item.qty}</span>
+                                            <span className={styles.increase} onClick={() => this.handleIncrease(item)}><span className="icon icon-plus"></span></span>
                                         </div>
-                                        <div className="action"><span className="remove-item" onClick={() => this.removeCartItem(item)}>Remove</span></div>
+                                        <div className={styles.actions}><span className={styles["remove-item"]} onClick={() => this.removeCartItem(item)}>Remove</span></div>
                                     </div>
                                 </div>
                             )

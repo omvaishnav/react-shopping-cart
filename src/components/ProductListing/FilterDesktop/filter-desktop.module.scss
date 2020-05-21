@@ -1,0 +1,38 @@
+@import '../../../assets/scss/variables.scss';
+
+@media only screen and (min-width: 768px) {
+    .filter {
+        border: none;
+
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+
+            :global(.icon){
+                display: none;
+            }
+        }
+        :global(.input-range) {
+            margin: 40px auto 0px;
+            width: 90% !important;
+        }
+        .label {
+            margin-bottom: 20px;
+        }
+    }
+    /* Range Slider */
+    :global {
+        .input-range {
+            width: 70% !important;
+            margin: 20px auto 10px;
+            
+            .input-range__label--min, .input-range__label--max {
+                display: none;
+            }
+            .input-range__slider {
+                background: $white;
+                
+            }
+        }
+    }
+}

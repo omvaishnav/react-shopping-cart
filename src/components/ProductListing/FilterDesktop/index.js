@@ -1,6 +1,6 @@
 import React from 'react';
 import InputRange from 'react-input-range';
-import './filter-desktop.scss';
+import styles from './filter-desktop.module.scss';
 import 'react-input-range/lib/css/index.css';
 
 
@@ -20,8 +20,8 @@ class FilterDesktop extends React.Component {
     }
     render(){
         return (
-            <div className="filter">
-                <div className="title" onClick={this.handleOpenModal}><span className="icon icon-filter"></span> Filters</div>
+            <div className={styles.filter}>
+                <div className={styles.title} onClick={this.handleOpenModal}><span className="icon icon-filter"></span> Filters</div>
                 
                 <InputRange
                     maxValue={100000}
@@ -29,9 +29,9 @@ class FilterDesktop extends React.Component {
                     value={this.state.value}
                     onChange={value => this.setState({ value })} />
 
-                <div className="label text-center">Price</div>
+                <div className={`${styles.label} text-center`}>Price</div>
                 
-                <div className="text-center">
+                <div className={`text-center`}>
                     <button className="btn btn-blue" onClick={this.handleApply}>Apply</button>
                 </div>
                 

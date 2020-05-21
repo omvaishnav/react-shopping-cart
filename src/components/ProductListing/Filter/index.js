@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import InputRange from 'react-input-range';
-import './filter.scss';
+import styles from './filter.module.scss';
 import 'react-input-range/lib/css/index.css';
 
 Modal.setAppElement('#root');
@@ -38,7 +38,7 @@ class Filter extends React.Component {
     }
     render(){
         return (
-            <div className="filter">
+            <div className={styles.filter}>
                 <div onClick={this.handleOpenModal}><span className="icon icon-filter"></span> Filters</div>
                 <Modal 
                     isOpen={this.state.showModal}

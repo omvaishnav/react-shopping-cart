@@ -22,17 +22,23 @@ export default function cartReducer(state = initialState,action){
             
         }
         case REMOVE_FROM_CART: {
-            const productItem = action.payload;
+            const productItem = action.payload.product;
+            const removalType = action.payload.removalType;
             const cart = state.cart;
 
             const existingProductIndex = findProductIndex(cart,productItem);
             let updatedCart;
             
-            if(cart[existingProductIndex].qty > 1) {
-                updatedCart = updateProductQty(cart,productItem,"remove")
-            } else {
-               cart.splice(existingProductIndex,1)
-               updatedCart = cart
+            if(removalType === "decrease"){
+                if(cart[existingProductIndex].qty > 1) {
+                    updatedCart = updateProductQty(cart,productItem,"remove")
+                } else {
+                cart.splice(existingProductIndex,1)
+                updatedCart = cart
+                }
+            } else if(removalType === "remove"){
+                cart.splice(existingProductIndex,1)
+                updatedCart = cart
             }
             
             return {

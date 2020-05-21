@@ -1,7 +1,12 @@
 @import '../../../assets/scss/variables.scss';
 
 .cart-summary {
-    padding: 0;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
 
     .title {
         font-weight: bold;

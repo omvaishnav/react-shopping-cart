@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import './sort.scss';
+import styles from './sort.module.scss';
 
 Modal.setAppElement('#root');
 
@@ -64,9 +64,9 @@ class Sort extends React.Component {
     render() {
         const SortOptions = () => {
             return (
-                <div className="sort-options">
+                <div className={styles["sort-options"]}>
                     {this.options.map(option => 
-                        <div className="option" key={option.key}>
+                        <div className={styles.option} key={option.key}>
                             <span 
                                 onClick={this.handleOptionClick.bind(this, option.value)} 
                                 className={`${(this.state.selectedOption === option.value ) ? 'selected' : ''}`}>{option.displayName}</span>
@@ -76,7 +76,7 @@ class Sort extends React.Component {
             )
         }
         return (
-            <div className="sort">
+            <div className={styles.sort}>
                 <div onClick={this.handleOpenModal}><span className="icon icon-sort"></span> Sort</div>
                 <Modal 
                     isOpen={this.state.showModal}

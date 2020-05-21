@@ -1,15 +1,10 @@
 @import '../../../assets/scss/variables.scss';
 
-
-@media only screen and (min-width: 768px) {
-    .filter {
-        border: none;
-
-        .title {
-            font-size: 14px;
-        }
-    }
-    /* Range Slider */
+.filter {
+    border-left: 1px solid #ccc;
+}
+/* Range Slider */
+:global{
     .input-range {
         width: 70% !important;
         margin: 20px auto 10px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './cart-summary.scss';
+import styles from './cart-summary.module.scss';
 import { formatPrice } from '../../Product/productHelper';
 
 function CartSummary(props) {
@@ -11,21 +11,21 @@ function CartSummary(props) {
     }
     
     return (
-        <div className="product-item cart-summary">
-            <div className="title">Price Details</div>
-            <div className="summary-content">
-                <div className="item price-item">
-                    <div className="label">Price ({item} item)</div>
-                    <div className="value text-right">{formatPrice(mrp)}</div>
+        <div className={`${styles["cart-summary"]}`}>
+            <div className={styles.title}>Price Details</div>
+            <div className={styles["summary-content"]}>
+                <div className={`${styles.item} ${styles["price-item"]}`}>
+                    <div className={styles.label}>Price ({item} item)</div>
+                    <div className={`${styles.value} text-right`}>{formatPrice(mrp)}</div>
                 </div>
-                <div className="item discount-item">
-                    <div className="label">Discount</div>
-                    <div className="value text-right">{formatPrice(mrp - srp)}</div>
+                <div className={`${styles.item} ${styles["discount-item"]}`}>
+                    <div className={styles.label}>Discount</div>
+                    <div className={`${styles.value} text-right`}>{formatPrice(mrp - srp)}</div>
                 </div>
             </div>
-            <div className="item total-payable">
-                <div className="label">Total Payable</div>
-                <div className="value text-right">{formatPrice(srp)}</div>
+            <div className={`${styles.item} ${styles["total-payable"]}`}>
+                <div className={styles.label}>Total Payable</div>
+                <div className={`${styles.value} text-right`}>{formatPrice(srp)}</div>
             </div>
         </div>
     )

@@ -1,11 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Sort from './Sort';
 import SortDesktop from './SortDesktop';
 import Filter from './Filter';
 import FilterDesktop from './FilterDesktop';
 import Product from '../Product';
 import Media from 'react-media';
-import './productlisting.scss';
+import { pushProductsToStore } from '../../Redux/Actions/productsAction';
+import styles from './productlisting.module.scss';
 
 import initialData from '../../staticData/data.json';
 
@@ -20,9 +23,21 @@ class ProductListing extends React.Component {
         this.sortBy = this.sortBy.bind(this);
         this.filterByRange = this.filterByRange.bind(this);
     }
+    componentDidMount(){
+        let dataObj = {
+            data: initialData.items,
+            dataType: "initial"
+        }
+        this.props.pushProductsToStore(dataObj);
+    }
+    componentDidUpdate(prevProps){
+        if(prevProps.dataType !== this.props.dataType){
+            this.forceUpdate();
+        }
+    }
     sortBy(option){
         let sortedProducts;
-        sortedProducts = this.state.products.sort((a,b)=>{
+        sortedProducts = this.props.products.sort((a,b)=>{
             if (option === "pricelow") {
                 return parseInt(a.price.actual)  - parseInt(b.price.actual);
             } else if (option === "pricehigh") {
@@ -33,33 +48,39 @@ class ProductListing extends React.Component {
             return false;
         })
 
-        this.setState({
-            products: sortedProducts
-        })
+        let dataObj = {
+            data: sortedProducts,
+            dataType: option
+        }
+        this.props.pushProductsToStore(dataObj);
     }
     filterByRange(range){
         const filterdData = this.data.filter(item => item.price.actual > range.min && item.price.actual < range.max);
-        this.setState({ products: filterdData })
+        let dataObj = {
+            data: filterdData,
+            dataType: range.min + range.max
+        }
+        this.props.pushProductsToStore(dataObj);
     }
     render(){
         return (
             <React.Fragment>
                
-                <div id="productListing" className={`product-listing`}>
+                <div id="productListing" className={styles["product-listing"]}>
                     <Media query={{ minWidth: 768 }}>
                         {matches =>
                            matches && (
-                            <div className="sidebar">
+                            <div className={styles.sidebar}>
                                 <FilterDesktop filterByRange={this.filterByRange} />
                             </div>
                            )
                         }
                     </Media>
-                    <div className="listing-inner">
+                    <div className={styles["listing-inner"]}>
                         <Media query={{ maxWidth: 768 }}>
                             {matches =>
                                 matches ? (
-                                    <div className="actions">
+                                    <div className={styles.actions}>
                                         <Sort sortBy={this.sortBy} />
                                         <Filter filterByRange={this.filterByRange} />
                                     </div>
@@ -69,8 +90,8 @@ class ProductListing extends React.Component {
                             }
                         </Media>
                         
-                        <div className="content">
-                            {this.state.products.map((item,i) => {
+                        <div className={styles.content}>
+                            {this.props.products.map((item,i) => {
                                 return <Product key={i} item={item} />
                             })}
                         </div>
@@ -80,4 +101,17 @@ class ProductListing extends React.Component {
         )
     }
 }
-export default ProductListing;
+
+const mapStateToProps = (store) => {
+    return {
+        products: store.products.products,
+        dataType: store.products.dataType
+    }
+}
+
+const mapActionsToProps = (dispatch) => {
+    return bindActionCreators({
+        pushProductsToStore
+    },dispatch)
+}
+export default connect(mapStateToProps,mapActionsToProps)(ProductListing);
