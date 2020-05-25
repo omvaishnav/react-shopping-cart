@@ -7,7 +7,7 @@ import Filter from './Filter';
 import FilterDesktop from './FilterDesktop';
 import Product from '../Product';
 import Media from 'react-media';
-import { pushProductsToStore } from '../../Redux/Actions/productsAction';
+import { pushProductsToStore, updateToastMessage } from '../../Redux/Actions/productsAction';
 import styles from './productlisting.module.scss';
 
 import initialData from '../../staticData/data.json';
@@ -71,7 +71,7 @@ class ProductListing extends React.Component {
                         {matches =>
                            matches && (
                             <div className={styles.sidebar}>
-                                <FilterDesktop filterByRange={this.filterByRange} />
+                                <FilterDesktop filterByRange={this.filterByRange} updateToastMessage={this.props.updateToastMessage} />
                             </div>
                            )
                         }
@@ -81,11 +81,11 @@ class ProductListing extends React.Component {
                             {matches =>
                                 matches ? (
                                     <div className={styles.actions}>
-                                        <Sort sortBy={this.sortBy} />
-                                        <Filter filterByRange={this.filterByRange} />
+                                        <Sort sortBy={this.sortBy} updateToastMessage={this.props.updateToastMessage} />
+                                        <Filter filterByRange={this.filterByRange} updateToastMessage={this.props.updateToastMessage} />
                                     </div>
                                 ) : (
-                                    <SortDesktop sortBy={this.sortBy} />
+                                    <SortDesktop sortBy={this.sortBy} updateToastMessage={this.props.updateToastMessage} />
                                 )
                             }
                         </Media>
@@ -111,7 +111,8 @@ const mapStateToProps = (store) => {
 
 const mapActionsToProps = (dispatch) => {
     return bindActionCreators({
-        pushProductsToStore
+        pushProductsToStore,
+        updateToastMessage,
     },dispatch)
 }
 export default connect(mapStateToProps,mapActionsToProps)(ProductListing);

@@ -49,30 +49,32 @@ class Sort extends React.Component {
     handleCloseModal () {
       this.setState({ showModal: false });
     }
-    handleOptionClick(option, e){
-        e.preventDefault();
-        
+    handleOptionClick(option){
         this.setState({
-            selectedOption : option
+            selectedOption: option
         })
     }
     handleApply(){
         const sortedOption = this.options.filter(option => option.value === this.state.selectedOption);
         this.props.sortBy(sortedOption[0].value);
-        this.setState({ showModal: false });
+        this.setState({ 
+            showModal: false
+        });
+        this.props.updateToastMessage("Sorted " + sortedOption[0].value)
     }
     render() {
         const SortOptions = () => {
             return (
-                <div className={styles["sort-options"]}>
-                    {this.options.map(option => 
-                        <div className={styles.option} key={option.key}>
-                            <span 
-                                onClick={this.handleOptionClick.bind(this, option.value)} 
-                                className={`${(this.state.selectedOption === option.value ) ? 'selected' : ''}`}>{option.displayName}</span>
-                        </div>
-                    )}
-                </div>
+                <React.Fragment>
+                    <div className={styles["sort-options"]}>
+                        {this.options.map(option => 
+                            <div className={styles.option} key={option.key} onClick={this.handleOptionClick.bind(this, option.value)} >
+                                <span 
+                                    className={`${(this.state.selectedOption === option.value ) ? 'selected' : ''}`}>{option.displayName}</span>
+                            </div>
+                        )}
+                    </div>
+                </React.Fragment>
             )
         }
         return (

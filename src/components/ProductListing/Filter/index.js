@@ -35,6 +35,7 @@ class Filter extends React.Component {
     handleApply () {
         this.props.filterByRange(this.state.value);
         this.setState({ showModal: false });
+        this.props.updateToastMessage("Filter applied");
     }
     render(){
         return (

@@ -1,0 +1,17 @@
+.toast-message {
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 50px;
+    color: #fff;
+    position: fixed;
+    top: 100%;
+    max-width: 80%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: transform 0.25s ease-in-out;
+
+    &:global(.active) {
+        transform: translate(-50%, -50px);
+        transition: transform 0.25s ease-in-out;
+    }
+}

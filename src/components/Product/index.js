@@ -4,11 +4,13 @@ import {bindActionCreators} from 'redux';
 import { addToCart, updateCartCount } from '../../Redux/Actions/cartAction';
 import { formatPrice } from './productHelper';
 import styles from './product.module.scss';
+import { updateToastMessage } from '../../Redux/Actions/productsAction';
 
 class Product extends React.Component {
     addToCart = (product) => {
         this.props.addToCart(product)
         this.props.updateCartCount(this.props.cartCount + 1)
+        this.props.updateToastMessage("Added to Cart")
     }
     render(){
         const productData = {
@@ -46,7 +48,8 @@ const mapStateToProps = (store) => {
 const mapActionsToProps = (dispatch) => {
   return bindActionCreators({
     addToCart,
-    updateCartCount
+    updateCartCount,
+    updateToastMessage
   },dispatch)
 }
   
